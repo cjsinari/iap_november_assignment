@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+
 require_once 'classes/user.php';
 require_once 'includes/mailer.php';
 
@@ -40,6 +40,7 @@ include "includes/header.php";
 <div class="row justify-content-center mt-5">
     <div class="col-md-6">
         <h2 class="text-center">Sign Up</h2>
+        <?php if (!empty($message)) echo $message; ?>
         <form method="POST">
             <div class="form-group">
                 <label>Username</label>
@@ -57,4 +58,5 @@ include "includes/header.php";
         </form>
     </div>
 </div>
+
 <?php include "includes/footer.php"; ?>
