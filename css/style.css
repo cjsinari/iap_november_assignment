@@ -1,0 +1,42 @@
+:root {
+    --primary-color: #44338d;
+    --secondary-color: #25e2d2;
+    --accent-color: #03A9F4;
+    --background-color: #FFFFFF;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    flex: 1; /* Ensures the content area stretches to push the footer down */
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+.navbar-brand {
+    color: var(--primary-color) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border: none;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
