@@ -2,12 +2,37 @@
 
 require_once 'classes/user.php';
 require_once 'includes/mailer.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $user = new User();
-    $user->register($_POST['username'], $_POST['email'], $_POST['password']);
-    header("Location: login.php");
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+$username = $_POST['username'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+
+$user = new User();
+$user->register($username, $email, $password);
+
+//Send welcome email to client
+
+$mailer = new Mailer();
+    $subject = "DIJI!";
+    $body = "
+        <h1>Welcome, $username!</h1>
+        <p>Explore the hub for all your gaming needs.</p>
+        <p>Grab your best gaming gear today!</p>
+        <p><a href='index.php'>Visit our store</a></p> ";
+
+        if ($mailer->sendEmail($email, $username, $subject, $body)) {
+            echo "<p class='text-success'>Registration successful! A welcome email has been sent to $email.</p>";
+        } else {
+            echo "<p class='text-warning'>Registration successful! However, welcome email could not be sent.</p>";
+        }
+    
+        header("Location: login.php");
+        exit;
+    }
+
+
 include "includes/header.php";
 ?>
 
